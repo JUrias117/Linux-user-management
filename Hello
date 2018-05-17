@@ -1,0 +1,27 @@
+#!/bin/bash
+clear
+PS3='Select an Option: '
+Option=("Add User")
+select opt in "${Option[@]}"
+do
+clear
+	case $opt in
+		"Add User" )
+			echo "Give user SUDO privileges?(y/n)"
+			read Choice
+clear
+			Choice=$(echo "$Choice" | tr '[:upper:]' '[:lower:]')
+			echo "Enter New Username:" 
+			read Name 
+clear
+			if [ $Choice == "y" ]; 
+			then 	
+				sudo adduser $Name;
+				sudo adduser $Name sudo;
+			else 
+				sudo adduser $Name;
+			fi ;;
+		* )
+			echo "Invalid User" ;;
+	esac
+done
